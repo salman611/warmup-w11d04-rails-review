@@ -11,20 +11,30 @@ For each of the following topics, please answer each of the questions. You can u
 
 1. What is the role of a join table in a many-to-many relationship?
 
+Answer:
+  Relational database systems usually don't allow you to implement a direct many-to-many relationship between two tables.Thus,we create a join table that sits between the two other tables of a many-to-many relationship. Its purpose is to store a record for each of the combinations of these other two tables.
 
 2. What two columns must be present in a join table?
+ foreign keys.
 
 
 3. Given the example below, edit the code to define a has many :through relationship.
 
     ```ruby
     class Customer < ActiveRecord::Base
+    has_many :purchases
+    has_many :products, through: :purchases
+    has_many :
     end
 
     class Product < ActiveRecord::Base
+    has_many :purchases
+    has_many :customers, through: :purchases
     end
 
     class Purchase < ActiveRecord::Base
+     belongs_to :product
+     belongs_to :customer
     end
     ```
 
@@ -40,7 +50,7 @@ For each of the following topics, please answer each of the questions. You can u
 ### Questions
 
 1. What does the `current_user` method that the Devise gem provides?
-
+For the current signed-in user
 
 2. What does the `authenticate_user!` method that the Devise gem provides?
 
